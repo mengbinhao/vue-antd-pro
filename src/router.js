@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import RenderRouterView from './components/RenderRouterView'
 
 Vue.use(Router)
 
@@ -12,7 +11,7 @@ export default new Router({
 			path: '/user',
 			//need a <router-view></router-view> tag
 			//底层是都转换成render funcion
-			component: RenderRouterView,
+			component: { render: h => h('router-view') },
 			children: [
 				{
 					path: '/user/login',
