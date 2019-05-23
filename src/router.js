@@ -57,53 +57,53 @@ const router = new Router({
 								import(/* webpackChunkName: "dashboard" */ './views/dashboard/Analysis')
 						}
 					]
-				}
-			]
-		},
-		{
-			path: '/form',
-			name: 'form',
-			//需要一个挂载点,底层是都转换成render funcion
-			component: { render: h => h('router-view') },
-			meta: { icon: 'form', title: '表单' },
-			children: [
-				{
-					path: '/form/basic-form',
-					name: 'basicform',
-					meta: { title: '基础表单' },
-					component: () =>
-						import(/* webpackChunkName: "form" */ './views/forms/BasicForm')
 				},
 				{
-					path: '/form/step-form',
-					name: 'stepform',
-					//display /form/step-form rather than /form/step-form/xxx
-					hideChildrenInMenu: true,
-					meta: { title: '分布表单' },
-					component: () =>
-						import(/* webpackChunkName: "form" */ './views/forms/StepForm'),
+					path: '/form',
+					name: 'form',
+					//需要一个挂载点,底层是都转换成render funcion
+					component: { render: h => h('router-view') },
+					meta: { icon: 'form', title: '表单' },
 					children: [
 						{
+							path: '/form/basic-form',
+							name: 'basicform',
+							meta: { title: '基础表单' },
+							component: () =>
+								import(/* webpackChunkName: "form" */ './views/forms/BasicForm')
+						},
+						{
 							path: '/form/step-form',
-							redirect: '/form/step-form/info'
-						},
-						{
-							path: '/form/step-form/info',
-							name: 'info',
+							name: 'stepform',
+							//display /form/step-form rather than /form/step-form/xxx
+							hideChildrenInMenu: true,
+							meta: { title: '分布表单' },
 							component: () =>
-								import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step1')
-						},
-						{
-							path: '/form/step-form/confirm',
-							name: 'confirm',
-							component: () =>
-								import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step2')
-						},
-						{
-							path: '/form/step-form/result',
-							name: 'result',
-							component: () =>
-								import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step3')
+								import(/* webpackChunkName: "form" */ './views/forms/StepForm'),
+							children: [
+								{
+									path: '/form/step-form',
+									redirect: '/form/step-form/info'
+								},
+								{
+									path: '/form/step-form/info',
+									name: 'info',
+									component: () =>
+										import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step1')
+								},
+								{
+									path: '/form/step-form/confirm',
+									name: 'confirm',
+									component: () =>
+										import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step2')
+								},
+								{
+									path: '/form/step-form/result',
+									name: 'result',
+									component: () =>
+										import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step3')
+								}
+							]
 						}
 					]
 				}

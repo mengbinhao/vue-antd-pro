@@ -52,7 +52,9 @@ export default {
 	},
 	data() {
 		//here data is not reactive
+		// like /dashboard: ["/dashboard"]
 		this.selectedKeysMap = {}
+		//like /form/step-form/confirm: (3) ["/", "/form", "/form/step-form"]
 		this.openKeysMap = {}
 		return {
 			collapsed: false,
@@ -81,7 +83,7 @@ export default {
 							route.path
 						])
 					} else {
-						//handle step-form display parent menu
+						//handle step-form display router path is its parent path
 						this.getMenuData(
 							route.children,
 							selectedKey ? parentKeys : [...parentKeys, route.path],
@@ -106,6 +108,10 @@ export default {
 		//get routes configuration info
 		//same as import router.js
 		this.displayMenu = this.getMenuData(this.$router.options.routes)
+	},
+	mounted() {
+		console.log(this.selectedKeysMap)
+		console.log(this.openKeysMap)
 	}
 }
 </script>
