@@ -12,8 +12,7 @@ const router = new Router({
 	routes: [
 		{
 			path: '/user',
-			//need a <router-view></router-view> tag
-			//底层是都转换成render funcion
+			hideInMenu: true,
 			component: () =>
 				import(/* webpackChunkName: "layout" */ './layout/UserLayout'),
 			children: [
@@ -42,16 +41,18 @@ const router = new Router({
 			children: [
 				{
 					path: '/',
-					redirect: 'dashboard/analysis'
+					redirect: '/dashboard/analysis'
 				},
 				{
 					path: '/dashboard',
 					name: 'dashboard',
+					meta: { icon: 'dashboard', title: '仪表盘' },
 					component: { render: h => h('router-view') },
 					children: [
 						{
 							path: '/dashboard/analysis',
 							name: 'analysis',
+							meta: { title: '分析页' },
 							component: () =>
 								import(/* webpackChunkName: "dashboard" */ './views/dashboard/Analysis')
 						}
@@ -62,20 +63,30 @@ const router = new Router({
 		{
 			path: '/form',
 			name: 'form',
+			//需要一个挂载点,底层是都转换成render funcion
 			component: { render: h => h('router-view') },
+			meta: { icon: 'form', title: '表单' },
 			children: [
 				{
 					path: '/form/basic-form',
 					name: 'basicform',
+					meta: { title: '基础表单' },
 					component: () =>
 						import(/* webpackChunkName: "form" */ './views/forms/BasicForm')
 				},
 				{
 					path: '/form/step-form',
 					name: 'stepform',
+					//display /form/step-form rather than /form/step-form/xxx
+					hideChildrenInMenu: true,
+					meta: { title: '分布表单' },
 					component: () =>
 						import(/* webpackChunkName: "form" */ './views/forms/StepForm'),
 					children: [
+						{
+							path: '/form/step-form',
+							redirect: '/form/step-form/info'
+						},
 						{
 							path: '/form/step-form/info',
 							name: 'info',
@@ -101,12 +112,12 @@ const router = new Router({
 		{
 			path: '*',
 			name: '404',
+			hideInMenu: true,
 			component: NotFound
 		}
 	]
 })
 
-//to、from、next
 router.beforeEach((to, from, next) => {
 	if (to.path !== from.path) {
 		NProgress.start()

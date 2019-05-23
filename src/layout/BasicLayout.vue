@@ -7,9 +7,10 @@
 				v-model="collapsed"
 				v-if="navLayout === 'left'"
 				:theme="navTheme"
+				width="256"
 			>
 				<div class="logo">Ant Design Vue</div>
-				<SiderMenu />
+				<SiderMenu :theme="navTheme" />
 			</a-layout-sider>
 			<a-layout>
 				<a-layout-header style="background: #fff; padding: 0">
@@ -58,9 +59,6 @@ export default {
 		navLayout() {
 			return this.$route.query.navLayout || 'left'
 		}
-	},
-	mounted() {
-		console.log(this.$route.query)
 	}
 }
 </script>
