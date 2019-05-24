@@ -7,7 +7,7 @@
 			:visible="visible"
 			width="300"
 		>
-			<template #handle>
+			<template v-slot:handle>
 				<a-icon
 					class="setting-icon"
 					:type="visible ? 'close' : 'setting'"
