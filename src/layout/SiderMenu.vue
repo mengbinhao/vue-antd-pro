@@ -33,6 +33,7 @@
  * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
  * */
 import SubMenu from './SubMenu'
+import { check } from '../utils/auth.js'
 
 export default {
 	props: {
@@ -74,7 +75,14 @@ export default {
 		//recursion generate menu
 		getMenuData(routes = [], parentKeys = [], selectedKey) {
 			const menuData = []
-			routes.forEach(route => {
+			for (let route of routes) {
+				if (
+					route.meta &&
+					route.meta.authority &&
+					!check(route.meta.authority)
+				) {
+					break
+				}
 				if (route.name && !route.hideInMenu) {
 					this.openKeysMap[route.path] = parentKeys
 					this.selectedKeysMap[route.path] = [selectedKey || route.path]
@@ -105,7 +113,7 @@ export default {
 						...this.getMenuData(route.children, [...parentKeys, route.path])
 					)
 				}
-			})
+			}
 			return menuData
 		}
 	},
@@ -115,10 +123,10 @@ export default {
 		this.displayMenu = this.getMenuData(this.$router.options.routes)
 		this.selectedKeys = this.selectedKeysMap[this.$route.path]
 		this.openKeys = this.openKeysMap[this.$route.path]
-	},
-	mounted() {
-		console.log(this.selectedKeysMap)
-		console.log(this.openKeysMap)
 	}
+	// mounted() {
+	// 	console.log(this.selectedKeysMap)
+	// 	console.log(this.openKeysMap)
+	// }
 }
 </script>

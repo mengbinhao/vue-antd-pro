@@ -2,7 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { Notification } from 'ant-design-vue'
+import findLast from 'lodash/findLast'
 import NotFound from './views/404'
+import Forbidden from './views/403'
+import { check, isLogin } from './utils/auth'
 
 Vue.use(Router)
 
@@ -36,6 +40,7 @@ const router = new Router({
 		},
 		{
 			path: '/',
+			meta: { authority: ['user', 'admin'] },
 			component: () =>
 				import(/* webpackChunkName: "layout" */ './layout/BasicLayout'),
 			children: [
@@ -63,7 +68,7 @@ const router = new Router({
 					name: 'form',
 					//需要一个挂载点,底层是都转换成render funcion
 					component: { render: h => h('router-view') },
-					meta: { icon: 'form', title: '表单' },
+					meta: { icon: 'form', title: '表单', authority: ['admin'] },
 					children: [
 						{
 							path: '/form/basic-form',
@@ -110,6 +115,12 @@ const router = new Router({
 			]
 		},
 		{
+			path: '/403',
+			name: '403',
+			hideInMenu: true,
+			component: Forbidden
+		},
+		{
 			path: '*',
 			name: '404',
 			hideInMenu: true,
@@ -122,6 +133,26 @@ router.beforeEach((to, from, next) => {
 	if (to.path !== from.path) {
 		NProgress.start()
 	}
+	//找到最近的配置权限的路由元数据
+	const record = findLast(to.matched, record => record.meta.authority)
+	if (record && !check(record.meta.authority)) {
+		//in case dead loop
+		if (!isLogin && to.path !== '/user/login') {
+			next({
+				path: '/user/login'
+			})
+			//in case dead loop
+		} else if (to.path !== '403') {
+			Notification['error']({
+				message: '403 Forbidden',
+				description: 'You dont have authority to access this page.'
+			})
+			next({
+				path: '/403'
+			})
+		}
+	}
+
 	next()
 })
 
