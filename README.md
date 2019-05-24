@@ -31,3 +31,7 @@ npm run test:unit
       2. render function
       3. global register
    2. custom directive(define、vue.use、use)
+8. ECharts
+   1. \$ref
+   2. lifecycle and notice of encapsulating third-party components
+   3. deep watch(low performance)
