@@ -19,6 +19,7 @@
 						@click="collapsed = !collapsed"
 						class="trigger"
 						v-if="navLayout === 'left'"
+						v-auth="['admin']"
 					></a-icon>
 					<Header />
 				</a-layout-header>

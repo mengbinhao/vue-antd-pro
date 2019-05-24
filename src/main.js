@@ -11,7 +11,7 @@ import store from './store'
 // babel-plugin-import convert below code to above two line code
 import { Button, Layout, Icon, Drawer, Radio, Menu } from 'ant-design-vue'
 import Authorized from './components/Authorized.vue'
-
+import auth from './directive/auth'
 Vue.config.productionTip = false
 
 Vue.use(Button)
@@ -21,6 +21,7 @@ Vue.use(Icon)
 Vue.use(Drawer)
 Vue.use(Radio)
 Vue.use(Menu)
+Vue.use(auth)
 
 Vue.component(Authorized.name, Authorized)
 
