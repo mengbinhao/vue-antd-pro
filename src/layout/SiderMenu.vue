@@ -47,7 +47,7 @@ export default {
 	watch: {
 		'$route.path': function(val) {
 			this.selectedKeys = this.selectedKeysMap[val]
-			this.openKeys = this.collapsed ? [] : this.openKeysMap[val]
+			this.openKeys = this.openKeysMap[val]
 		}
 	},
 	data() {
@@ -57,15 +57,11 @@ export default {
 		//like /form/step-form/confirm: (3) ["/", "/form", "/form/step-form"]
 		this.openKeysMap = {}
 		return {
-			collapsed: false,
-			selectedKeys: this.selectedKeysMap[this.$route.path],
-			openKeys: this.collapsed ? [] : this.openKeysMap[this.$route.path]
+			selectedKeys: [],
+			openKeys: []
 		}
 	},
 	methods: {
-		toggleCollapsed() {
-			this.collapsed = !this.collapsed
-		},
 		//recursion generate menu
 		getMenuData(routes = [], parentKeys = [], selectedKey) {
 			const menuData = []
@@ -108,6 +104,8 @@ export default {
 		//get routes configuration info
 		//same as import router.js
 		this.displayMenu = this.getMenuData(this.$router.options.routes)
+		this.selectedKeys = this.selectedKeysMap[this.$route.path]
+		this.openKeys = this.openKeysMap[this.$route.path]
 	},
 	mounted() {
 		console.log(this.selectedKeysMap)
