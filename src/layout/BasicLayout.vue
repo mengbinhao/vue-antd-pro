@@ -10,7 +10,7 @@
 				width="256"
 			>
 				<div class="logo">Ant Design Vue</div>
-				<SiderMenu :theme="navTheme" />
+				<SiderMenu :theme="navTheme" :collapsed="collapsed" />
 			</a-layout-sider>
 			<a-layout>
 				<a-layout-header style="background: #fff; padding: 0">
