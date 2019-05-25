@@ -12,6 +12,10 @@ module.exports = {
 			'/api': {
 				target: 'http://localhost:3333',
 				changeOrigin: true
+			},
+			'/form': {
+				target: 'http://localhost:3333',
+				changeOrigin: true
 			}
 		}
 	}

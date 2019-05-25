@@ -30,7 +30,6 @@ Service.interceptors.response.use(
 		const {
 			response: { status, statusText }
 		} = err
-		debugger
 		Notification['error']({
 			// eslint-disable-next-line no-unused-vars
 			message: h => (

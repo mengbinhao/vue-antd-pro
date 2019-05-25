@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers'
 export default {
 	data() {
 		this.form = this.$form.createForm(this)
@@ -63,9 +62,9 @@ export default {
 	},
 	mounted() {
 		//dynamic set field value
-		setTimeout(() => {
-			this.form.setFieldsValue({ fieldA: 'lalalala' })
-		}, 3000)
+		// setTimeout(() => {
+		// 	this.form.setFieldsValue({ fieldA: 'lalalala' })
+		// }, 3000)
 	},
 	computed: {
 		formItemLayout() {
