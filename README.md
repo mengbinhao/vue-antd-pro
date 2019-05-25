@@ -38,3 +38,5 @@
 //can get in vue.config.js
 process.env.xxx
 ```
+12. form
+    1.  auto validation(not same as i-view、element-ui's v-model)

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<a-form :layout="formLayout">
+		<a-form :layout="formLayout" :form="form">
 			<a-form-item
 				label="Form Layout"
 				:label-col="formItemLayout.labelCol"
@@ -19,17 +19,29 @@
 				label="Field A"
 				:label-col="formItemLayout.labelCol"
 				:wrapper-col="formItemLayout.wrapperCol"
-				:validate-status="fieldAStatus"
-				:help="fieldAHelp"
 			>
-				<a-input placeholder="input placeholder" v-model="fieldA" />
+				<a-input
+					v-decorator="[
+						'fieldA',
+						{
+							initialValue: fieldA,
+							rules: [
+								{
+									required: true,
+									min: 6,
+									message: 'must be greater than 5 characters'
+								}
+							]
+						}
+					]"
+				/>
 			</a-form-item>
 			<a-form-item
 				label="Field B"
 				:label-col="formItemLayout.labelCol"
 				:wrapper-col="formItemLayout.wrapperCol"
 			>
-				<a-input placeholder="input placeholder" />
+				<a-input placeholder="input placeholder" v-decorator="['fieldB']" />
 			</a-form-item>
 			<a-form-item :wrapper-col="buttonItemLayout.wrapperCol">
 				<a-button type="primary" @click="handleSubmit">Submit</a-button>
@@ -39,14 +51,21 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers'
 export default {
 	data() {
+		this.form = this.$form.createForm(this)
 		return {
 			formLayout: 'horizontal',
-			fieldA: '',
-			fieldAStatus: '',
-			fieldAHelp: ''
+			fieldA: 'hello',
+			fieldB: ''
 		}
+	},
+	mounted() {
+		//dynamic set field value
+		setTimeout(() => {
+			this.form.setFieldsValue({ fieldA: 'lalalala' })
+		}, 3000)
 	},
 	computed: {
 		formItemLayout() {
@@ -67,25 +86,19 @@ export default {
 				: {}
 		}
 	},
-	watch: {
-		fieldA(val) {
-			if (val.length < 6) {
-				this.fieldAStatus = 'error'
-				this.fieldAHelp = 'must great than 5 characters'
-			} else {
-				this.fieldAStatus = ''
-				this.fieldAHelp = ''
-			}
-		}
-	},
 	methods: {
 		handleFormLayoutChange(e) {
 			this.formLayout = e.target.value
 		},
 		handleSubmit() {
-			if (this.fieldA.length < 5) {
-				console.log('re-enter pls')
-			}
+			//async-validator: ["fieldA must be at least 6 characters"]
+			this.form.validateFields((err, values) => {
+				if (!err) {
+					console.log(values)
+					//can sync to other component
+					Object.assign(this, values)
+				}
+			})
 		}
 	}
 }
