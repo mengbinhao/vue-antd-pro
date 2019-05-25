@@ -39,4 +39,6 @@
 process.env.xxx
 ```
 12. form
-    1.  auto validation(not same as i-view、element-ui's v-model)
+    1.  manually validation
+    2.  auto validation(not same as i-view、element-ui's v-model)
+13. step-form(vue router、vuex)
