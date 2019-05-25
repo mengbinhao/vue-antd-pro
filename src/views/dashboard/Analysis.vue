@@ -6,7 +6,7 @@
 
 <script>
 import Chart from '@/components/Chart'
-import axios from 'axios'
+import { getDashboardChartData } from '@/utils/request'
 
 export default {
 	components: {
@@ -29,22 +29,24 @@ export default {
 	},
 	methods: {
 		getChartData() {
-			axios
-				.get('/api/dashboard/chart', { params: { ID: 12345 } })
-				.then(response => {
-					this.options = {
-						title: { text: 'ECharts 入门示例' },
-						tooltip: {},
-						xAxis: {
-							data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-						},
-						yAxis: {},
-						series: [{ name: '销量', type: 'bar', data: response.data }]
-					}
-				})
-				.catch(err => {
-					console.log(err)
-				})
+			getDashboardChartData().then(data => {
+				this.options = {
+					title: { text: 'ECharts entry example' },
+					tooltip: {},
+					xAxis: {
+						data: [
+							'shirt',
+							'cardign',
+							'chiffon shirt',
+							'pants',
+							'heels',
+							'socks'
+						]
+					},
+					yAxis: {},
+					series: [{ name: 'Sales', type: 'bar', data }]
+				}
+			})
 		}
 	}
 }

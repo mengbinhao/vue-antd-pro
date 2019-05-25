@@ -7,6 +7,7 @@ module.exports = {
 	},
 	//extends: ["plugin:vue/essential", "@vue/prettier"],
 	extends: ['plugin:vue/strongly-recommended', '@vue/prettier'],
+	//"off" 或 0  "warn" 或 1 "error" 或 2
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
