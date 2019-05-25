@@ -9,7 +9,16 @@ import store from './store'
 //import "ant-design-vue/lib/button/style"; // or ant-design-vue/lib/button/style/css for css format file
 
 // babel-plugin-import convert below code to above two line code
-import { Button, Layout, Icon, Drawer, Radio, Menu } from 'ant-design-vue'
+import {
+	Button,
+	Layout,
+	Icon,
+	Drawer,
+	Radio,
+	Menu,
+	Form,
+	Input
+} from 'ant-design-vue'
 import Authorized from './components/Authorized.vue'
 import auth from './directive/auth'
 Vue.config.productionTip = false
@@ -21,6 +30,8 @@ Vue.use(Icon)
 Vue.use(Drawer)
 Vue.use(Radio)
 Vue.use(Menu)
+Vue.use(Form)
+Vue.use(Input)
 Vue.use(auth)
 
 Vue.component(Authorized.name, Authorized)
