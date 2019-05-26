@@ -8,7 +8,7 @@ export function getDashboardChartData() {
 
 export function submitStepForm(payload) {
 	return Service({
-		url: '/form/saveStepFrom',
+		url: '/api/saveStepFrom',
 		method: 'post',
 		data: payload
 	})

@@ -8,6 +8,16 @@
 				>{{ step.payAccount }}</a-form-item
 			>
 			<a-form-item
+				label="收款账户"
+				:label-col="formItemLayout.labelCol"
+				:wrapper-col="formItemLayout.wrapperCol"
+			>
+				<ReceiverAccount
+					:disabled="true"
+					:value="$store.state.form.step.receiverAccount"
+				/>
+			</a-form-item>
+			<a-form-item
 				label="密码"
 				:label-col="formItemLayout.labelCol"
 				:wrapper-col="formItemLayout.wrapperCol"
@@ -33,7 +43,12 @@
 </template>
 
 <script>
+import ReceiverAccount from '@/components/ReceiverAccount'
+
 export default {
+	components: {
+		ReceiverAccount
+	},
 	data() {
 		this.form = this.$form.createForm(this)
 		return {

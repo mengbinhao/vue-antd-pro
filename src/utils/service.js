@@ -14,7 +14,6 @@ export const Service = axios.create({
 
 Service.interceptors.request.use(
 	config => {
-		//console.log(config)
 		return config
 	},
 	err => {

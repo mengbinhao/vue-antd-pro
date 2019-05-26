@@ -93,7 +93,7 @@ export default {
 			//async-validator: ["fieldA must be at least 6 characters"]
 			this.form.validateFields((err, values) => {
 				if (!err) {
-					console.log(values)
+					//console.log(values)
 					//can sync to other component
 					Object.assign(this, values)
 				}
