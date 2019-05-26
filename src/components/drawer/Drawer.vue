@@ -9,7 +9,7 @@
 		>
 			<template v-slot:handle>
 				<a-icon
-					class="setting-icon"
+					class="setting-drawer-handle"
 					:type="visible ? 'close' : 'setting'"
 					@click="visible = !visible"
 				></a-icon>
@@ -60,18 +60,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.setting-icon {
-	position: absolute;
-	top: 240px;
-	right: 300px;
-	font-size: 20px;
-	width: 36px;
-	height: 36px;
-	background: blue;
-	color: #fff;
-	text-align: center;
-	line-height: 36px;
-	border-radius: 5px 0 0 5px;
-}
-</style>
+<style lang="less" src="./index.less"></style>

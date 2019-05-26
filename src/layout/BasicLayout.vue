@@ -1,6 +1,6 @@
 <template>
 	<div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
-		<a-layout id="components-layout-demo-side" style="min-height: 100vh">
+		<a-layout class="components-layout-demo-side" style="min-height: 100vh">
 			<a-layout-sider
 				:trigger="null"
 				collapsible
@@ -41,7 +41,7 @@
 import Header from './Header'
 import Footer from './Footer'
 import SiderMenu from './SiderMenu'
-import Drawer from '../components/Drawer'
+import Drawer from '../components/drawer/Drawer'
 
 export default {
 	data() {
@@ -67,6 +67,9 @@ export default {
 </script>
 
 <style scoped>
+/* .components-layout-demo-side >>> .ant-menu-item-selected {
+	color: rgb(204, 20, 51);
+} */
 .logo {
 	height: 64px;
 	line-height: 64px;

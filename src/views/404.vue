@@ -1,9 +1,37 @@
 <template>
-	<div>404</div>
+	<div class="flex">
+		<IconFont class="icon" type="icon-404" />
+		<!-- <img :src="logo" alt /> -->
+		<Logo />
+	</div>
 </template>
 
 <script>
-export default {}
+//file-loder handle to a string of url
+//import logo from '@/assets/logo.svg'
+
+import Logo from '@/assets/logo.svg'
+export default {
+	// data() {
+	// 	return {
+	// 		logo
+	// 	}
+	// }
+	components: {
+		Logo
+	}
+}
 </script>
 
-<style></style>
+<style scoped>
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 600px;
+}
+
+.icon {
+	font-size: 150px;
+}
+</style>

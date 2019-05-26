@@ -42,3 +42,7 @@ process.env.xxx
     1.  manually validation
     2.  auto validation(not same as i-view、element-ui's v-model)
 13. step-form(vue router、vuex)
+14. custom validate form component
+15. icon(iconfout、img or Logo componnet)
+16. custom theme
+    1.  `antd-theme-webpack-plugin`动态编译主题`window.less.modifyVars({"@primary-color":'red'})`
