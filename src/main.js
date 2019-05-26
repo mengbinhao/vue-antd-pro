@@ -18,7 +18,10 @@ import {
 	Menu,
 	Form,
 	Input,
-	Select
+	Select,
+	LocaleProvider,
+	Dropdown,
+	DatePicker
 } from 'ant-design-vue'
 import Authorized from './components/Authorized.vue'
 import auth from './directive/auth'
@@ -34,6 +37,9 @@ Vue.use(Menu)
 Vue.use(Form)
 Vue.use(Input)
 Vue.use(Select)
+Vue.use(LocaleProvider)
+Vue.use(Dropdown)
+Vue.use(DatePicker)
 
 Vue.use(auth)
 

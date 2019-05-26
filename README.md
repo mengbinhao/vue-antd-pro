@@ -45,4 +45,11 @@ process.env.xxx
 14. custom validate form component
 15. icon(iconfout、img or Logo componnet)
 16. custom theme
-    1.  `antd-theme-webpack-plugin`动态编译主题`window.less.modifyVars({"@primary-color":'red'})`
+    1.  vue.config.js -> `modifyVars`
+    2.  \>\>\>
+    3.  [antd-theme-webpack-plugin](https://github.com/mzohaibqc/antd-theme-webpack-plugin)
+    > window.less.modifyVars({"@primary-color":'red'})
+17.  i18n
+    1.  LocaleProvider
+    2.  moment
+    3.  [vue-i18n](https://github.com/kazupon/vue-i18n)
