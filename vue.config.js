@@ -1,5 +1,6 @@
 const path = require('path')
 const AntDesignThemePlugin = require('antd-theme-webpack-plugin')
+const webpack = require('webpack')
 
 const options = {
 	antDir: path.join(__dirname, './node_modules/ant-design-vue'),
@@ -35,7 +36,12 @@ module.exports = {
 		}
 	},
 	configureWebpack: {
-		plugins: [themePlugin]
+		plugins: [themePlugin, new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
+		resolve: {
+			alias: {
+				'@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.js')
+			}
+		}
 	},
 	chainWebpack: config => {
 		const svgRule = config.module.rule('svg')
@@ -46,5 +52,7 @@ module.exports = {
 
 		// 添加要替换的 loader
 		svgRule.use('vue-svg-loader').loader('vue-svg-loader')
-	}
+	},
+	//can use template
+	runtimeCompiler: true
 }

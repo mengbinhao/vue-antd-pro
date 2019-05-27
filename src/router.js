@@ -109,6 +109,13 @@ const router = new Router({
 										import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step3')
 								}
 							]
+						},
+						{
+							path: '/form/test-form',
+							name: 'testform',
+							meta: { title: '测试表单' },
+							component: () =>
+								import(/* webpackChunkName: "form" */ './views/forms/TestForm')
 						}
 					]
 				}

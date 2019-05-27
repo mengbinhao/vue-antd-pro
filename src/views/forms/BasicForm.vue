@@ -90,7 +90,6 @@ export default {
 			this.formLayout = e.target.value
 		},
 		handleSubmit() {
-			//async-validator: ["fieldA must be at least 6 characters"]
 			this.form.validateFields((err, values) => {
 				if (!err) {
 					//console.log(values)

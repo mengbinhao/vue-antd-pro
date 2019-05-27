@@ -68,6 +68,7 @@ export default {
 			const { form, $store, step } = this
 			form.validateFields((err, values) => {
 				if (!err) {
+					console.log(values)
 					$store.dispatch({
 						type: 'form/submitStepForm',
 						payload: { ...step, ...values }

@@ -49,7 +49,14 @@ process.env.xxx
     2.  \>\>\>
     3.  [antd-theme-webpack-plugin](https://github.com/mzohaibqc/antd-theme-webpack-plugin)
     > window.less.modifyVars({"@primary-color":'red'})
-17.  i18n
-    1.  LocaleProvider
-    2.  moment
-    3.  [vue-i18n](https://github.com/kazupon/vue-i18n)
+17. i18n
+    1. LocaleProvider //antd UI component
+    2. moment //moment related
+    3. [vue-i18n](https://github.com/kazupon/vue-i18n) //business
+18. bandle optimization
+    1.  `npm run build -- --report`
+    2.  babel require UI component on demand
+    3.  router lazy load and split code
+    4.  lodash function require
+19. `raw-loader` and `vue-highlightjs`
+20. unit test

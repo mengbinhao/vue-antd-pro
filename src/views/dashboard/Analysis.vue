@@ -1,12 +1,16 @@
 <template>
 	<div>
+		{{ $t('message')['app.dashboard.analysis.timeLabel'] }} :
+		<a-date-picker />
 		<Chart :options="options" style="height:400px" />
+		<pre v-highlightjs="chartCode"><code class="html"></code></pre>
 	</div>
 </template>
 
 <script>
 import Chart from '@/components/Chart'
 import { getDashboardChartData } from '@/utils/request'
+import chartCode from '!!raw-loader!../../components/Chart'
 
 export default {
 	components: {
@@ -14,7 +18,8 @@ export default {
 	},
 	data() {
 		return {
-			options: {}
+			options: {},
+			chartCode
 		}
 	},
 	mounted() {

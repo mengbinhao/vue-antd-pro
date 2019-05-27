@@ -11,6 +11,7 @@
 						'payAccount',
 						{
 							initialValue: step.payAccount,
+							valuePropName: 'lala',
 							rules: [
 								{
 									required: true,

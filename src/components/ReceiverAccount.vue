@@ -2,7 +2,7 @@
 	<a-input-group compact>
 		<a-select
 			:disabled="disabled"
-			v-model="type"
+			:value="type"
 			style="width: 130px"
 			@change="handleTypeChange"
 		>
@@ -12,7 +12,7 @@
 		<a-input
 			style="width: calc(100% - 130px)"
 			:disabled="disabled"
-			v-model="number"
+			:value="number"
 			@change="handleNumberChange"
 		/>
 	</a-input-group>
@@ -30,11 +30,6 @@ export default {
 			default: false
 		}
 	},
-	watch: {
-		value(val) {
-			Object.assign(this, val)
-		}
-	},
 	data() {
 		const { type, number } = this.value
 		return {
@@ -42,12 +37,26 @@ export default {
 			number: number || ''
 		}
 	},
+	watch: {
+		value(val = {}) {
+			this.type = val.type || 'alipay'
+			this.number = val.number || ''
+		}
+	},
 	methods: {
 		handleTypeChange(val) {
-			this.$emit('change', { ...this.value, type: val })
+			this.triggerChange({ val })
 		},
 		handleNumberChange(e) {
-			this.$emit('change', { ...this.value, number: e.target.values })
+			const number = parseInt(e.target.value || 0, 10)
+			if (isNaN(number)) {
+				return
+			}
+			this.triggerChange({ number })
+		},
+		triggerChange(changedValue) {
+			// Should provide an event to pass value to Form.
+			this.$emit('change', Object.assign({}, this.$data, changedValue))
 		}
 	}
 }
