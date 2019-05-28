@@ -2,7 +2,7 @@
 	<a-input-group compact>
 		<a-select
 			:disabled="disabled"
-			:value="type"
+			v-model="type"
 			style="width: 130px"
 			@change="handleTypeChange"
 		>
@@ -12,7 +12,7 @@
 		<a-input
 			style="width: calc(100% - 130px)"
 			:disabled="disabled"
-			:value="number"
+			v-model="number"
 			@change="handleNumberChange"
 		/>
 	</a-input-group>
@@ -21,7 +21,7 @@
 <script>
 export default {
 	props: {
-		value: {
+		form: {
 			type: Object,
 			default: () => {}
 		},
@@ -31,16 +31,10 @@ export default {
 		}
 	},
 	data() {
-		const { type, number } = this.value
+		const { type, number } = this.getDispalyData()
 		return {
-			type: type || 'alipay',
-			number: number || ''
-		}
-	},
-	watch: {
-		value(val = {}) {
-			this.type = val.type || 'alipay'
-			this.number = val.number || ''
+			type,
+			number
 		}
 	},
 	methods: {
@@ -57,6 +51,15 @@ export default {
 		triggerChange(changedValue) {
 			// Should provide an event to pass value to Form.
 			this.$emit('change', Object.assign({}, this.$data, changedValue))
+		},
+		getDispalyData() {
+			if (this.form) {
+				return this.form.getFieldsValue(['receiverAccount'])
+			}
+			return {
+				type: this.$store.state.form.step.receiverAccount.type,
+				number: this.$store.state.form.step.receiverAccount.number
+			}
 		}
 	}
 }
