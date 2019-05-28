@@ -3,14 +3,9 @@
 		{{ $t('message')['app.dashboard.analysis.timeLabel'] }} :
 		<a-date-picker />
 		<Chart :options="options" style="height:400px" />
-		<a-collapse
-			default-active-key="1"
-			:bordered="false"
-			@change="isShow = !isShow"
-		>
+		<a-collapse :bordered="false" @change="isShowSource = !isShowSource">
 			<a-collapse-panel
-				:show-arrow="true"
-				:header="isShow ? 'source code' : 'close'"
+				:header="isShowSource ? 'close' : 'source code'"
 				key="1"
 				:style="customStyle"
 			>
@@ -33,7 +28,7 @@ export default {
 		return {
 			options: {},
 			chartCode,
-			isShow: false,
+			isShowSource: false,
 			customStyle:
 				'background: #f7f7f7;border-radius: 5px;margin-bottom: 24px;border: 0;overflow: hidden'
 		}
