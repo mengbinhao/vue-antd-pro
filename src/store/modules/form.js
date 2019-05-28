@@ -3,7 +3,7 @@ import { submitStepForm } from '@/utils/request'
 
 const state = {
 	step: {
-		payAccount: '123456',
+		payAccount: '',
 		receiverAccount: {
 			type: 'alipay',
 			number: ''
