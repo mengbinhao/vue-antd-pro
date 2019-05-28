@@ -38,12 +38,6 @@ export default {
 		}
 	},
 	watch: {
-		// options: {
-		// 	handler() {
-		// 		this.chart.setOption(this.options)
-		// 	},
-		// 	deep: true
-		// }
 		options: {
 			handler() {
 				this.chart.setOption(this.options)

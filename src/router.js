@@ -68,7 +68,7 @@ const router = new Router({
 					name: 'form',
 					//需要一个挂载点,底层是都转换成render funcion
 					component: { render: h => h('router-view') },
-					meta: { icon: 'form', title: '表单', authority: ['admin'] },
+					meta: { icon: 'form', title: '表单' },
 					children: [
 						{
 							path: '/form/basic-form',
@@ -82,7 +82,7 @@ const router = new Router({
 							name: 'stepform',
 							//display /form/step-form rather than /form/step-form/xxx
 							hideChildrenInMenu: true,
-							meta: { title: '分布表单' },
+							meta: { title: '分布表单', authority: ['admin'] },
 							component: () =>
 								import(/* webpackChunkName: "form" */ './views/forms/StepForm'),
 							children: [
@@ -111,11 +111,11 @@ const router = new Router({
 							]
 						},
 						{
-							path: '/form/test-form',
-							name: 'testform',
-							meta: { title: '测试表单' },
+							path: '/form/test-component',
+							name: 'testcomponent',
+							meta: { title: '测试' },
 							component: () =>
-								import(/* webpackChunkName: "form" */ './views/forms/TestForm')
+								import(/* webpackChunkName: "form" */ './views/forms/TestComponent')
 						}
 					]
 				}

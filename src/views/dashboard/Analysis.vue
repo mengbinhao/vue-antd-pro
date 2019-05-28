@@ -3,7 +3,20 @@
 		{{ $t('message')['app.dashboard.analysis.timeLabel'] }} :
 		<a-date-picker />
 		<Chart :options="options" style="height:400px" />
-		<pre v-highlightjs="chartCode"><code class="html"></code></pre>
+		<a-collapse
+			default-active-key="1"
+			:bordered="false"
+			@change="isShow = !isShow"
+		>
+			<a-collapse-panel
+				:show-arrow="true"
+				:header="isShow ? 'source code' : 'close'"
+				key="1"
+				:style="customStyle"
+			>
+				<pre v-highlightjs="chartCode"><code class="html"></code></pre>
+			</a-collapse-panel>
+		</a-collapse>
 	</div>
 </template>
 
@@ -19,7 +32,10 @@ export default {
 	data() {
 		return {
 			options: {},
-			chartCode
+			chartCode,
+			isShow: false,
+			customStyle:
+				'background: #f7f7f7;border-radius: 5px;margin-bottom: 24px;border: 0;overflow: hidden'
 		}
 	},
 	mounted() {

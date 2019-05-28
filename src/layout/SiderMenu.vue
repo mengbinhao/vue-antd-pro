@@ -81,7 +81,7 @@ export default {
 					route.meta.authority &&
 					!check(route.meta.authority)
 				) {
-					break
+					continue
 				}
 				if (route.name && !route.hideInMenu) {
 					this.openKeysMap[route.path] = parentKeys

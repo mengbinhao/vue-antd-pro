@@ -26,7 +26,8 @@ import {
 	Select,
 	LocaleProvider,
 	Dropdown,
-	DatePicker
+	DatePicker,
+	Collapse
 } from 'ant-design-vue'
 import Authorized from './components/Authorized.vue'
 import auth from './directive/auth'
@@ -46,7 +47,7 @@ Vue.use(Select)
 Vue.use(LocaleProvider)
 Vue.use(Dropdown)
 Vue.use(DatePicker)
-
+Vue.use(Collapse)
 Vue.use(auth)
 
 Vue.component(Authorized.name, Authorized)
