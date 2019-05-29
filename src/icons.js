@@ -17,3 +17,15 @@ export {
 export {
 	default as GlobalOutline
 } from '@ant-design/icons/lib/outline/GlobalOutline'
+
+export {
+	default as ExclamationCircleOutline
+} from '@ant-design/icons/lib/outline/ExclamationCircleOutline'
+
+export {
+	default as DashboardOutline
+} from '@ant-design/icons/lib/outline/DashboardOutline'
+
+export {
+	default as FormOutline
+} from '@ant-design/icons/lib/outline/FormOutline'

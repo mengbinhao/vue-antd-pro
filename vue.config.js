@@ -29,10 +29,15 @@ module.exports = {
 		}
 	},
 	devServer: {
+		open: false,
+		host: 'localhost',
+		https: false,
+		port: 8888,
 		proxy: {
 			'/api': {
 				target: 'http://localhost:3333',
 				changeOrigin: true
+				// pathRewrite: {'^/api': ''}
 			}
 		}
 	},
@@ -56,4 +61,5 @@ module.exports = {
 	}
 	//can use template
 	//runtimeCompiler: true
+	//productionSourceMap: true
 }

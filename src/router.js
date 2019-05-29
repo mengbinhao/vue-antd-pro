@@ -109,13 +109,56 @@ const router = new Router({
 										import(/* webpackChunkName: "form" */ './views/forms/StepForm/Step3')
 								}
 							]
-						},
+						}
+					]
+				},
+				{
+					path: '/test',
+					name: 'test',
+					component: { render: h => h('router-view') },
+					meta: { icon: 'exclamation-circle', title: '测试' },
+					children: [
 						{
-							path: '/form/test-component',
+							path: '/test/testcomponent',
 							name: 'testcomponent',
 							meta: { title: '测试' },
 							component: () =>
-								import(/* webpackChunkName: "form" */ './views/forms/TestComponent')
+								import(/* webpackChunkName: "test" */ './views/test/TestComponent')
+						},
+						{
+							path: '/test/renderfunction',
+							name: 'renderfunction',
+							meta: { title: 'renderfunction' },
+							component: () =>
+								import(/* webpackChunkName: "test" */ './views/test/RenderFunction')
+						},
+						{
+							path: '/test/table',
+							name: 'table',
+							meta: { title: 'table' },
+							component: () =>
+								import(/* webpackChunkName: "test" */ './views/test/TableRender')
+						},
+						{
+							path: '/test/dynamic-component',
+							name: 'dynamic-component',
+							meta: { title: 'dynamic-component' },
+							component: () =>
+								import(/* webpackChunkName: "test" */ './views/test/DynamicComponent')
+						},
+						{
+							path: '/test/nexttick',
+							name: 'nexttick',
+							meta: { title: 'nexttick' },
+							component: () =>
+								import(/* webpackChunkName: "test" */ './views/test/Nexttick')
+						},
+						{
+							path: '/test/v-model',
+							name: 'v-model',
+							meta: { title: 'v-model' },
+							component: () =>
+								import(/* webpackChunkName: "test" */ './views/test/DisplayCalculator')
 						}
 					]
 				}
